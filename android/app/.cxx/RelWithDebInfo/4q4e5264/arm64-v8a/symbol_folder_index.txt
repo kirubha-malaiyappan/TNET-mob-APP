@@ -1,0 +1,1 @@
+/home/mvtsc1/tnet_app/build/app/intermediates/cxx/RelWithDebInfo/4q4e5264/obj/arm64-v8a

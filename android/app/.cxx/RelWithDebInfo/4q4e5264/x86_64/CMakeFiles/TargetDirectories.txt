@@ -1,0 +1,2 @@
+/home/mvtsc1/tnet_app/android/app/.cxx/RelWithDebInfo/4q4e5264/x86_64/CMakeFiles/edit_cache.dir
+/home/mvtsc1/tnet_app/android/app/.cxx/RelWithDebInfo/4q4e5264/x86_64/CMakeFiles/rebuild_cache.dir

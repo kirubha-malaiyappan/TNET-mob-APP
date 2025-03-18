@@ -1,0 +1,1 @@
+/home/mvtsc1/tnet_app/build/app/intermediates/cxx/Debug/346i3g1l/obj/arm64-v8a
