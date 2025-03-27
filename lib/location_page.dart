@@ -38,12 +38,10 @@ class _LocationPageState extends State<LocationPage> {
   }
 
   void _logout() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.clear(); // Clear login data
-
-  // Navigator.pushReplacementNamed(context, AppRoutes.login);
-  Navigator.of(context).pushReplacementNamed('/login');
-}
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear(); // Clear login data
+    Navigator.of(context).pushReplacementNamed('/login');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +60,6 @@ class _LocationPageState extends State<LocationPage> {
             onPressed: () {
               authProvider.logout();
               _logout();
-              // Navigator.of(context).pushReplacementNamed('/login');
             },
           ),
         ],
@@ -87,9 +84,10 @@ class _LocationPageState extends State<LocationPage> {
               Text(
                 "Hi ${extractUsername(widget.email)}!",
                 style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Archivo'),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Archivo',
+                ),
               )
             ],
           ),
@@ -106,6 +104,7 @@ class _LocationPageState extends State<LocationPage> {
                 style: const TextStyle(color: Colors.red),
               ),
             ),
+          // Location Dropdown (Chennai)
           Container(
             height: 80,
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -132,7 +131,8 @@ class _LocationPageState extends State<LocationPage> {
                     dropdownColor: AppStyles.dropdownColor,
                     isExpanded: true,
                     underline: const SizedBox.shrink(),
-                    items: locationProvider.locations.map<DropdownMenuItem<String>>((String value) {
+                    items: locationProvider.locations
+                        .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(
@@ -147,6 +147,7 @@ class _LocationPageState extends State<LocationPage> {
                   ),
           ),
           const SizedBox(height: 20),
+          // Shop Floor Dropdown (Styled like the Location dropdown)
           Container(
             height: 80,
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -164,56 +165,22 @@ class _LocationPageState extends State<LocationPage> {
             child: locationProvider.isLoadingShopFloors
                 ? Center(
                     child: CircularProgressIndicator(color: AppStyles.textColor))
-                : DropdownButtonFormField<String>(
+                : DropdownButton<String>(
                     value: locationProvider.selectedShopFloor,
                     hint: Text(
                       'Select Shop Floor',
-                      style: TextStyle(
-                        color: AppStyles.textColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: TextStyle(color: AppStyles.textColor),
                     ),
                     dropdownColor: AppStyles.dropdownColor,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: AppStyles.basecolor,
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: AppStyles.dropdownBorderColor,
-                          width: 1.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: AppStyles.focusBorderColor,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      color: AppStyles.textColor,
-                      size: 28,
-                    ),
-                    items: locationProvider.shopFloors.map<DropdownMenuItem<String>>((String value) {
+                    isExpanded: true,
+                    underline: const SizedBox.shrink(),
+                    items: locationProvider.shopFloors
+                        .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(
                           value,
-                          style: TextStyle(
-                            color: AppStyles.textColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
+                          style: TextStyle(color: AppStyles.textColor),
                         ),
                       );
                     }).toList(),
